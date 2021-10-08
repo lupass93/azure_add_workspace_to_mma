@@ -1,14 +1,15 @@
 param(
-    [string] $workspaceIds, 
-    [string] $workspaceKeys
+    [string[]] $workspaceIds,
+    [string[]] $workspaceKeys
 )
 
 if ($workspaceIds.Length -ne $workspaceKeys.Length) {
 
 
-    Write-Error 'The Input is not Correct. Array Lengths are differents: ' $workspaceIds.Length ' and ' $workspaceKeys.Length
+    Write-Error ('The Input is not Correct. Array Lengths are differents: ' +  $workspaceIds.Length +  ' and ' +  $workspaceKeys.Length)
     exit 1
 }
+
 
 for ($i = 0; $i -lt $workspaceIds.Length, $i++) {
 

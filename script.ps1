@@ -14,7 +14,10 @@ if ($workspaceIds.Length -ne $workspaceKeys.Length) {
 
 
 # GET ALL WORKSPACES ASSOCIATED
+$mma = New-Object -ComObject 'AgentConfigManager.MgmtSvcCfg'
 $workspaces = $mma.GetCloudWorkspaces() 
+
+Write-Information ($workspaces)
 
 
 # REMOVE ALL WORKSPACES ASSOCIATED
@@ -22,6 +25,7 @@ foreach ($value in $workspaces) {
 
     # GET MMA CONFIGURATION
     $mma = New-Object -ComObject 'AgentConfigManager.MgmtSvcCfg'
+    Write-Information("Deleting " + $value.workspaceID)
     $mma.RemoveCloudWorkspace($value.workspaceID)
     $mma.ReloadConfiguration()
 
@@ -32,7 +36,8 @@ foreach ($value in $workspaces) {
 for ($i = 0; $i -lt $workspaceIds.Length; $i++) {
 
     # GET MMA CONFIGURATION
-    $mma = New-Object -ComObject 'AgentConfigManager.MgmtSvcCfg'    
+    $mma = New-Object -ComObject 'AgentConfigManager.MgmtSvcCfg'
+    Write-Information("Adding " + $workspaceIds[$i])    
     $mma.AddCloudWorkspace($workspaceIds[$i], $workspaceKeys[$i])
     $mma.ReloadConfiguration()
 

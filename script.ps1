@@ -8,7 +8,7 @@ if ($workspaceIds.Length -ne $workspaceKeys.Length) {
     Write-Output 'workspaceIds'  $workspaceIds.Length
     Write-Output 'workspaceKeys'  $workspaceKeys.Length
 
-    Write-Error 'The Input is not Correct. Array Lengths are differents.'
+    Write-Error 'workspaceIds'  $workspaceIds.Length + 'workspaceKeys' +  $workspaceKeys.Length +  'The Input is not Correct. Array Lengths are differents.'
     exit 1
 }
 

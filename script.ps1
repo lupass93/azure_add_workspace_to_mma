@@ -11,7 +11,7 @@ if ($workspaceIds.Length -ne $workspaceKeys.Length) {
 }
 
 
-for ($i = 0; $i -lt $workspaceIds.Length, $i++) {
+for ($i = 0; $i -lt $workspaceIds.Length; $i++) {
 
     $mma = New-Object -ComObject 'AgentConfigManager.MgmtSvcCfg'
     $mma.AddCloudWorkspace($workspaceIds[$i], $workspaceKeys[$i])

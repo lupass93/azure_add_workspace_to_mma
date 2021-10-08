@@ -24,24 +24,27 @@ Write-Information ($workspaces)
 foreach ($value in $workspaces) {
 
     # GET MMA CONFIGURATION
-    $mma = New-Object -ComObject 'AgentConfigManager.MgmtSvcCfg'
+    $mmare = New-Object -ComObject 'AgentConfigManager.MgmtSvcCfg'
     Write-Information("Deleting " + $value.workspaceID)
-    $mma.RemoveCloudWorkspace($value.workspaceID)
-    $mma.ReloadConfiguration()
+    $mmare.RemoveCloudWorkspace($value.workspaceID)
+
 
 }
+
+$mmare.ReloadConfiguration()
 
 
 # ADD ALL WORKSPACES PASSED TO MMA
 for ($i = 0; $i -lt $workspaceIds.Length; $i++) {
 
     # GET MMA CONFIGURATION
-    $mma = New-Object -ComObject 'AgentConfigManager.MgmtSvcCfg'
+    $mmaadd = New-Object -ComObject 'AgentConfigManager.MgmtSvcCfg'
     Write-Information("Adding " + $workspaceIds[$i])    
-    $mma.AddCloudWorkspace($workspaceIds[$i], $workspaceKeys[$i])
-    $mma.ReloadConfiguration()
+    $mmaadd.AddCloudWorkspace($workspaceIds[$i], $workspaceKeys[$i])
+  
 
 }
 
+$mmaadd.ReloadConfiguration()
 
 exit 0

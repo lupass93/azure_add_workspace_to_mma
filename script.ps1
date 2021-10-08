@@ -3,7 +3,7 @@ param(
     [string] $workspaceKeys
 )
 
-if ($workspaceIds.Length -ne $workspaceKeys.Length) {
+if ($workspaceIds.count -ne $workspaceKeys.count) {
 
     Write-Error 'The Input is not Correct. Array Lengths are differents.'
     exit 1
